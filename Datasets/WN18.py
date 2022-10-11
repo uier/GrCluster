@@ -196,7 +196,7 @@ class WN18():
 	def create_train_data_generator(self, batch_size = 512, sampling_type = 'uniform'):
 		
 		data = self.train_data
-		distances = self.train_entity_distances
+		#distances = self.train_entity_distances
 
 		if sampling_type == 'uniform':
 			
@@ -204,7 +204,7 @@ class WN18():
 				positive_heads = data[i:i+batch_size, 0]
 				positive_tails = data[i:i+batch_size, 1]
 				positive_relations = data[i:i+batch_size, 2]
-				positive_distances = distances[i:i+batch_size]
+				#positive_distances = distances[i:i+batch_size]
 
 				negative_heads = positive_heads.copy()
 				negative_relations = positive_relations.copy()
@@ -216,7 +216,7 @@ class WN18():
 					else:
 						negative_tails[j] = numpy.random.randint(0, self.entity_count)
 
-				yield positive_heads, positive_tails, positive_relations, positive_distances, negative_heads, negative_tails, negative_relations
+				yield positive_heads, positive_tails, positive_relations, negative_heads, negative_tails, negative_relations # positive_distances,
 
 		elif sampling_type == 'bernoulli':
 			
@@ -224,7 +224,7 @@ class WN18():
 				positive_heads = data[i:i+batch_size, 0]
 				positive_tails = data[i:i+batch_size, 1]
 				positive_relations = data[i:i+batch_size, 2]
-				positive_distances = distances[i:i+batch_size]
+				#positive_distances = distances[i:i+batch_size]
 
 				negative_heads = positive_heads.copy()
 				negative_relations = positive_relations.copy()
@@ -238,7 +238,7 @@ class WN18():
 						negative_tails[j] = numpy.random.randint(0, self.entity_count)
 
 						
-				yield positive_heads, positive_tails, positive_relations, positive_distances, negative_heads, negative_tails, negative_relations	
+				yield positive_heads, positive_tails, positive_relations, negative_heads, negative_tails, negative_relations # positive_distances,
 
 	def create_positive_generator_for_triplet_classification(self, batch_size = 512):
 		

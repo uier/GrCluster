@@ -1,0 +1,10 @@
+9
+hasEnglishTitle	0
+belongsTo	1
+hasKeyword	2
+isProducedBy	3
+isProducedIn	4
+hasGender	5
+actedIn	6
+played	7
+hasCharacter	8
