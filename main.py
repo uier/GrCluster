@@ -9,7 +9,7 @@ from Models.TransD import TransD
 from Models.HolE import HolE
 from Models.DistMult import DistMult
 from Models.ComplEx import ComplEx
-from Datasets.WN18 import WN18
+from Datasets.YAGO import YAGO
 from Datasets.WN_HIERARCHY import WN_HIERARCHY
 from tqdm import tqdm
 from math import ceil
@@ -27,7 +27,7 @@ parser.add_argument("-p", "--patience", help = "Patience while training the embe
 parser.add_argument("-o", "--output-file", help = "Pickle file name for the trained model to save", type = str, default = None)
 parser.add_argument("-i", "--input-file", help = "Pickle file name for the trained model to load", type = str, default = None)
 parser.add_argument("-d", "--dataset", help = "Dataset to be used", type = str, default = 'WN18')
-parser.add_argument("-a", "--embedding-model", help = "Embedding Model to be used", type = str, default = 'TransE')
+parser.add_argument("-a", "--embedding-model", help = "Embedding Model to be used", type = str, default = 'TransR')
 parser.add_argument("-n", "--original", help = "Train using original embedding model", default = False, action = "store_true")
 parser.add_argument("-q", "--sampling-type", help = "Method used to sample data", type = str, default = 'uniform')
 parser.add_argument("-f", "--discount-factor", help = "Discounting factor used for distance", type = float, default = None)
@@ -122,9 +122,9 @@ with tensorflow.Graph().as_default():
 					training_loss = 0
 					
 					for _  in tqdm(range(ceil(len(dataset.train_data) / args.batch_size))):
-						positive_heads, positive_tails, positive_relations, positive_distances, negative_heads, negative_tails, negative_relations = train_generator.__next__()
+						positive_heads, positive_tails, positive_relations, negative_heads, negative_tails, negative_relations = train_generator.__next__()
 						
-						training_loss += embedding_model.train_model(session, positive_heads, positive_tails, positive_relations, cluster, negative_heads, negative_tails, negative_relations)
+						training_loss += embedding_model.train_model(session, positive_heads, positive_tails, positive_relations, None, negative_heads, negative_tails, negative_relations)
 						training_step += 1
 
 					print("Train loss:", training_loss / training_step)

@@ -1,0 +1,27 @@
+26
+actedIn	0
+isLeaderOf	1
+wasBornIn	2
+directed	3
+graduatedFrom	4
+worksAt	5
+playsFor	6
+hasMusicalRole	7
+created	8
+isCitizenOf	9
+isKnownFor	10
+hasAcademicAdvisor	11
+wroteMusicFor	12
+isAffiliatedTo	13
+influences	14
+hasWonPrize	15
+hasChild	16
+isPoliticianOf	17
+isInterestedIn	18
+edited	19
+livesIn	20
+hasWebsite	21
+diedIn	22
+isMarriedTo	23
+hasGender	24
+owns	25
